@@ -238,7 +238,7 @@ public class EnergyMeterElement extends SixNodeElement {
                     break;
                 case clientEnergyUnitId:
                     energyUnit++;
-                    if (energyUnit > 3) energyUnit = 0;
+                    if (energyUnit > 4) energyUnit = 0;
                     needPublish();
                     break;
                 case clientTimeUnitId:

@@ -191,7 +191,7 @@ public class Eln {
     // Mod information (override from 'mcmod.info' file)
     public final static String MODID = "Eln";
     public final static String NAME = "Electrical Age";
-    public final static String MODDESC = "Electricity in your base!";
+    public final static String MODDESC = "Electricity in your base! But a terrible fork though.";
     public final static String URL = "https://eln.ja13.org";
     public final static String UPDATE_URL = "https://github.com/jrddunbr/ElectricalAge/releases";
     public final static String SRC_URL = "https://github.com/jrddunbr/ElectricalAge";
@@ -724,7 +724,7 @@ public class Eln {
         registerElectricalTool(121);
         registerPortableItem(122);
         registerFuelBurnerItem(124);
-        registerPortableNaN(); // 125
+        //Disabled for antihell purposes registerPortableNaN(); // 125
         registerBasicItems(126);
 
         OreDictionary.registerOre("blockAluminum", arcClayBlock);

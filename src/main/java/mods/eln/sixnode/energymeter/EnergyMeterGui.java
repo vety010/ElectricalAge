@@ -166,7 +166,10 @@ public class EnergyMeterGui extends GuiContainerEln {
                     energyUnitBt.displayString = "MJ";
                     break;
                 case 3:
-                    energyUnitBt.displayString = "GJ";
+                    energyUnitBt.displayString = "Wh";
+                    break;
+                case 4:
+                    energyUnitBt.displayString = "kWh";
                     break;
                 default:
                     energyUnitBt.displayString = "??";
