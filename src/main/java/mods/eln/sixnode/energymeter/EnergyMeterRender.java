@@ -62,7 +62,6 @@ public class EnergyMeterRender extends SixNodeElementRender {
             front.left().glRotateOnX();
         }
 
-        //descriptor.draw(energyStack / Math.pow(10, energyUnit * 3 - 1), timerCouter / (timeUnit == 0 ? 360 : 8640),
         double drawEnergyUnitConversion;
 
         switch(energyUnit) {
