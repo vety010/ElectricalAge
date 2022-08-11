@@ -15,8 +15,9 @@ import mods.eln.sim.electrical.nbt.NbtElectricalLoad
 import mods.eln.sim.thermal.nbt.NbtThermalLoad
 import mods.eln.sim.watchdogs.ThermalLoadWatchDog
 import mods.eln.sim.watchdogs.VoltageStateWatchDog
-import mods.eln.sim.watchdogs.WorldExplosion
 import mods.eln.sim.electrical.heater.ElectricalLoadHeatThermalLoad
+import mods.eln.sim.watchdogs.WorldExplosion
+import mods.eln.sim.watchdogs.WorldFailure
 import net.minecraft.util.Vec3
 import java.io.DataOutputStream
 

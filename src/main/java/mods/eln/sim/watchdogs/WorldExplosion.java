@@ -2,6 +2,7 @@ package mods.eln.sim.watchdogs;
 
 import mods.eln.Eln;
 import mods.eln.misc.Coordinate;
+import mods.eln.node.INodeElement;
 import mods.eln.node.six.SixNodeElement;
 import mods.eln.node.transparent.TransparentNodeElement;
 import mods.eln.simplenode.energyconverter.EnergyConverterElnToOtherNode;
@@ -15,6 +16,8 @@ public class WorldExplosion implements IDestructible {
     Coordinate c;
     float strength;
     String type;
+
+
 
     public WorldExplosion(Coordinate c) {
         this.c = c;
@@ -59,5 +62,16 @@ public class WorldExplosion implements IDestructible {
     @Override
     public String describe() {
         return String.format("%s (%s)", this.type, this.c.toString());
+    }
+
+    @Override
+    public void failureImpl(float intensity) {
+
+        //c.world().spawnParticle("", c.x+(Math.random()-0.5), c.y+(Math.random()), c.z+(Math.random()-0.5), 0, 0, 0);
+    }
+
+    @Override
+    public void cancelFailure() {
+
     }
 }

@@ -191,11 +191,11 @@ public class Eln {
     // Mod information (override from 'mcmod.info' file)
     public final static String MODID = "Eln";
     public final static String NAME = "Electrical Age";
-    public final static String MODDESC = "Electricity in your base! But a terrible fork though.";
+    public final static String MODDESC = "Electricity in your base! But a terrible fork though. With even more terrible people maintaining it.";
     public final static String URL = "https://eln.ja13.org";
-    public final static String UPDATE_URL = "https://github.com/jrddunbr/ElectricalAge/releases";
-    public final static String SRC_URL = "https://github.com/jrddunbr/ElectricalAge";
-    public final static String[] AUTHORS = {"Dolu1990", "jrddunbr", "Baughn", "Grissess", "Caeleron", "OmegaHaxors", "lambdaShade", "cm0x4D", "metc"};
+    public final static String UPDATE_URL = "https://github.com/PatriikPlays/ElectricalAge/releases";
+    public final static String SRC_URL = "https://github.com/PatriikPlays/ElectricalAge";
+    public final static String[] AUTHORS = {"Dolu1990", "jrddunbr", "Baughn", "Grissess", "Caeleron", "OmegaHaxors", "lambdaShade", "cm0x4D", "metc", "PatriikPlays", "BomberPlayz"};
 
     public static Logger logger = LogManager.getLogger("ELN");
 
