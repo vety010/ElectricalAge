@@ -1,6 +1,7 @@
 # Minecraft Mod - Codename : ELN
+## Revival try by Bomber and Patriik
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/50b9dd17ce574d53b0432741b08b257d)](https://app.codacy.com/app/jrddunbr/ElectricalAge?utm_source=github.com&utm_medium=referral&utm_content=jrddunbr/ElectricalAge&utm_campaign=Badge_Grade_Settings)
+Sorry no badges for now
 
 Electrical Age (ELN) is a Minecraft Mod offering the ability to perform large-scale in-game electrical simulations.
 
