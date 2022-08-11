@@ -84,6 +84,10 @@ repositories {
         name = "mobiusstrip"
         url = "http://default.mobiusstrip.eu/maven/"
     }
+    maven {
+        name = "cil.li"
+        url = "https://maven.cil.li/"
+    }
 }
 
 dependencies {
@@ -93,8 +97,9 @@ dependencies {
     // Used for MNA matrix decompositions
     external files("libs/commons-math3-3.3.jar")
 
-    // Waila Support
+    // Mods
     compile "mcp.mobius.waila:Waila:1.5.11-RC2-NONEI_1.7.10:dev"
+    compile "li.cil.oc:OpenComputers:MC1.7.10-1.7.+:dev"
 
     // Prometheus support (for metrics)
     shade group: 'io.prometheus', name: 'simpleclient', version: prometheus_version

@@ -28,9 +28,11 @@ import mods.eln.sixnode.wirelesssignal.aggregator.IWirelessSignalAggregator;
 import mods.eln.sixnode.wirelesssignal.aggregator.SmallerAggregator;
 import mods.eln.sixnode.wirelesssignal.tx.WirelessSignalTxElement;
 import net.minecraft.nbt.NBTTagCompound;
+import org.apache.logging.log4j.core.helpers.KeyValuePair;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 @Optional.Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = Other.modIdCc)
 public class ComputerProbeNode extends SimpleNode implements IPeripheral {
@@ -159,6 +161,16 @@ public class ComputerProbeNode extends SimpleNode implements IPeripheral {
 
     public Object[] signalGetIn(Direction side) {
         return new Object[]{ioGate[side.getInt()].getInputNormalized()};
+    }
+
+    public Object[] signalList() {
+        Map<String,Double> ret = new HashMap<String,Double>();
+
+        for (int i = 0; i < 6; i++) {
+            ret.put(Direction.fromInt(i).name(),ioGate[i].getInputNormalized());
+        }
+
+        return new Object[]{ret};
     }
 
     public Object[] wirelessSet(String channel, double value) {
