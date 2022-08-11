@@ -1,7 +1,7 @@
 # Blender v3.0.0 OBJ File: 'ElectricalBuzzer.blend'
 # www.blender.org
 mtllib ElectricalBuzzer.mtl
-o Vumeter
+o Buzzer
 v 0.437500 0.062500 -0.437500
 v 0.437500 0.062500 0.437500
 v -0.437500 0.062500 0.437500

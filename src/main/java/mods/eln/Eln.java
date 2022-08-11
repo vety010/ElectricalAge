@@ -667,6 +667,7 @@ public class Eln {
         registerSixNodeMisc(117);
         registerLogicalGates(118);
         registerAnalogChips(124);
+        //registerElectricalBuzzer(125);
 
         //TRANSPARENT NODE REGISTRATION
         //Sub-UID must be unique in this section only.
@@ -2361,6 +2362,18 @@ public class Eln {
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
     }
+
+    /*private void registerElectricalBuzzer(int id) {
+        int subId;
+        String name;
+        ElectricalBuzzerDescriptor desc;
+        {
+            subId = 0;
+            name = TR_NAME(Type.NONE, "Buzzer");
+            desc = new ElectricalBuzzerDescriptor(name, "Buzzer", false);
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+    }*/
 
     private void registerElectricalAlarm(int id) {
         int subId;

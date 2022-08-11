@@ -34,24 +34,18 @@ import java.io.DataOutputStream
 import java.io.IOException
 import java.util.HashMap
 
+/*
+TODO: Create buzzer with 2 signal inputs (volume, frequency)
+ */
 
-class ElectricalBuzzerDescriptor(name: String, objName: String, var onOffOnly: Boolean) : SixNodeDescriptor(name, ElectricalVuMeterElement::class.java, ElectricalVuMeterRender::class.java) {
+/*
+class ElectricalBuzzerDescriptor(name: String, objName: String) : SixNodeDescriptor(name, ElectricalBuzzerElement::class.java, ElectricalBuzzerRender::class.java) {
     var obj: Obj3D?
-
-    enum class ObjType {
-        Rot, Frequency, Volume
-    }
-
-    var objType: ObjType? = null
     var buzzer: Obj3D.Obj3DPart? = null
-    var led: Obj3D.Obj3DPart? = null
-    var halo: Obj3D.Obj3DPart? = null
-    var main: Obj3D.Obj3DPart? = null
+
     @JvmField
     var pinDistance: FloatArray? = null
-    val isRGB: Boolean
     override fun setParent(item: Item, damage: Int) {
-        super.setParent(item, damage)
         Data.addSignal(newItemStack())
     }
 
@@ -59,52 +53,12 @@ class ElectricalBuzzerDescriptor(name: String, objName: String, var onOffOnly: B
         var factor = factorArg
         if (factor < 0.0) factor = 0.0f
         if (factor > 1.0) factor = 1.0f
-        when (objType) {
-            ObjType.LedOnOff -> {
-                main!!.draw()
-                if (isRGB) {
-                    val ledColor = Color()
-                    ledColor.fromHSB(factor, 1f, 1f)
-                    if (factor > 0.005f) {
-                        GL11.glColor3f(ledColor.red / 255f, ledColor.green / 255f, ledColor.blue / 255f)
-                    } else {
-                        GL11.glColor3f(0.5f, 0.5f, 0.5f)
-                    }
-                    UtilsClient.drawLight(led)
-                    if (entity != null) {
-                        if (factor > 0.005f) {
-                            UtilsClient.drawHalo(halo, ledColor.red / 255f, ledColor.green / 255f, ledColor.blue / 255f, entity, false)
-                        }
-                    } else {
-                        if (factor > 0.005f) {
-                            UtilsClient.drawLight(halo)
-                        }
-                    }
-                } else {
-                    val s = factor > 0.5
-                    val c = UtilsClient.ledOnOffColorC(s)
-                    GL11.glColor3f(c.red / 255f, c.green / 255f, c.blue / 255f)
-                    UtilsClient.drawLight(led)
-                    if (entity != null) UtilsClient.drawHalo(halo, c.red / 255f, c.green / 255f, c.blue / 255f, entity, false) else UtilsClient.drawLight(halo)
-                }
-            }
-            ObjType.Rot -> {
-                vumeter!!.draw()
-                val alphaOff: Float = pointer!!.getFloat("alphaOff")
-                val alphaOn: Float = pointer!!.getFloat("alphaOn")
-                pointer!!.draw(factor * (alphaOn - alphaOff) + alphaOff, 1.0f, 0f, 0f)
-            }
-            else -> {
-            }
-        }
+        buzzer!!.draw()
     }
 
     override fun addInformation(itemStack: ItemStack, entityPlayer: EntityPlayer, list: MutableList<String>, par4: Boolean) {
         super.addInformation(itemStack, entityPlayer, list, par4)
-        if (isRGB)
-            list.add(I18N.tr("Displays a color based on the value of a signal"))
-        else
-            list.add(I18N.tr("Displays the value of a signal."))
+        list.add(I18N.tr("Buzzes. What else did you expect?"))
     }
 
     override fun shouldUseRenderHelper(type: IItemRenderer.ItemRenderType, item: ItemStack, helper: IItemRenderer.ItemRendererHelper) = type != IItemRenderer.ItemRenderType.INVENTORY
@@ -129,34 +83,21 @@ class ElectricalBuzzerDescriptor(name: String, objName: String, var onOffOnly: B
         this.name = name
         obj = Eln.obj.getObj(objName)
         if (obj != null) {
-            if (obj!!.getString("type").toLowerCase() == "rot") {
-                objType = ObjType.Rot
-                vumeter = obj!!.getPart("Vumeter")
-                pointer = obj!!.getPart("Pointer")
-                pinDistance = Utils.getSixNodePinDistance(vumeter!!)
-            }
-            if (obj!!.getString("type") == "LedOnOff") {
-                objType = ObjType.LedOnOff
-                main = obj!!.getPart("main")
-                halo = obj!!.getPart("halo")
-                led = obj!!.getPart("Led")
-                pinDistance = Utils.getSixNodePinDistance(main!!)
-            }
+            buzzer = obj!!.getPart("Buzzer")
         }
-        isRGB = super.name == "Multicolor LED vuMeter"
-        voltageLevelColor = VoltageLevelColor.SignalVoltage
     }
+
 
     override fun canBePlacedOnSide(player: EntityPlayer?, side: Direction) = true
 }
 
 
-class ElectricalVuMeterElement(sixNode: SixNode, side: Direction, descriptor: SixNodeDescriptor) : SixNodeElement(sixNode, side, descriptor) {
+class ElectricalBuzzerElement(sixNode: SixNode, side: Direction, descriptor: SixNodeDescriptor) : SixNodeElement(sixNode, side, descriptor) {
+    /*
     @JvmField
     var inputGate = NbtElectricalGateInput("inputGate")
-    var slowProcess = ElectricalVuMeterSlowProcess(this)
     @JvmField
-    var descriptor: ElectricalVuMeterDescriptor = descriptor as ElectricalVuMeterDescriptor
+    var descriptor: ElectricalBuzzerDescriptor = descriptor as ElectricalBuzzerDescriptor
     override fun readFromNBT(nbt: NBTTagCompound) {
         super.readFromNBT(nbt)
         val value = nbt.getByte("front")
@@ -213,11 +154,12 @@ class ElectricalVuMeterElement(sixNode: SixNode, side: Direction, descriptor: Si
         electricalLoadList.add(inputGate)
         slowProcessList.add(slowProcess)
     }
+    */
 }
 
 
-class ElectricalVuMeterRender(tileEntity: SixNodeEntity, side: Direction, descriptor: SixNodeDescriptor) : SixNodeElementRender(tileEntity, side, descriptor) {
-    var descriptor: ElectricalVuMeterDescriptor = descriptor as ElectricalVuMeterDescriptor
+class ElectricalBuzzerRender(tileEntity: SixNodeEntity, side: Direction, descriptor: SixNodeDescriptor) : SixNodeElementRender(tileEntity, side, descriptor) {
+    var descriptor: ElectricalBuzzerDescriptor = descriptor as ElectricalBuzzerDescriptor
     var interpolator: PhysicalInterpolator = PhysicalInterpolator(0.4f, 2.0f, 1.5f, 0.2f)
     var factor = 0f
     var boot = true
@@ -262,7 +204,7 @@ class ElectricalVuMeterRender(tileEntity: SixNodeEntity, side: Direction, descri
 }
 
 
-class ElectricalVuMeterSlowProcess(var element: ElectricalVuMeterElement) : IProcess {
+class ElectricalBuzzerSlowProcess(var element: ElectricalBuzzerElement) : IProcess {
     var timeCounter = 0.0
     var lastState: Boolean
     override fun process(time: Double) {
@@ -295,3 +237,4 @@ class ElectricalVuMeterSlowProcess(var element: ElectricalVuMeterElement) : IPro
         lastState = element.inputGate.stateHigh()
     }
 }
+*/
