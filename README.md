@@ -1,5 +1,5 @@
 # Minecraft Mod - Codename : ELN
-## Revival try by Bomber and Patriik
+## Revival *attempt* by Bomber and Patriik
 
 Sorry no badges for now
 
@@ -26,7 +26,7 @@ You can compile and launch the current development version. Click in the upper r
 #### Linux/Mac
 
 ```bash
-git clone https://github.com/jrddunbr/ElectricalAge.git
+git clone https://github.com/V0xelTech/ElectricalAge.git
 cd ElectricalAge
 ./gradlew setupDecompWorkspace
 ./gradlew runClient
@@ -35,7 +35,7 @@ cd ElectricalAge
 #### Windows
 
 ```powershell
-git clone https://github.com/jrddunbr/ElectricalAge.git
+git clone https://github.com/V0xelTech/ElectricalAge.git
 cd ElectricalAge
 gradlew.exe setupDecompWorkspace
 gradlew.exe runClient
