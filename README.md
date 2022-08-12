@@ -1,5 +1,5 @@
 # Minecraft Mod - Codename : ELN
-## Revival try by Bomber and Patriik
+## Revival *attempt* by Bomber and Patriik
 
 Sorry no badges for now
 
@@ -7,7 +7,7 @@ Electrical Age (ELN) is a Minecraft Mod offering the ability to perform large-sc
 
 Look at the official project website [electrical-age.net](https://electrical-age.net/) and [the Wiki](http://wiki.electrical-age.net/) to get general information. More dedicated documentation on the way soon!
 
-This is a fork of Electrical Age maintained by Jared Dunbar (jrddunbr), with the intent to add features and push for active development. It includes all the features from the [upstream Electrical Age repository](https://github.com/Electrical-Age/ElectricalAge/).
+This is a fork of jrddunbr's Electrical Age fork maintained by Patriik and BomberPlayz.
 
 ## How to get started
 
@@ -26,7 +26,7 @@ You can compile and launch the current development version. Click in the upper r
 #### Linux/Mac
 
 ```bash
-git clone https://github.com/jrddunbr/ElectricalAge.git
+git clone https://github.com/V0xelTech/ElectricalAge.git
 cd ElectricalAge
 ./gradlew setupDecompWorkspace
 ./gradlew runClient
@@ -35,7 +35,7 @@ cd ElectricalAge
 #### Windows
 
 ```powershell
-git clone https://github.com/jrddunbr/ElectricalAge.git
+git clone https://github.com/V0xelTech/ElectricalAge.git
 cd ElectricalAge
 gradlew.exe setupDecompWorkspace
 gradlew.exe runClient
@@ -138,5 +138,3 @@ Some graphics are public domain. These are:
 - src/main/resources/assets/eln/textures/blocks/smallsolarpanel.png
 - src/main/resources/assets/eln/textures/blocks/smallrotatingsolarpanel.png
 - src/main/resources/assets/eln/textures/blocks/2x3rotatingsolarpanel.png
-
-![logo](https://raw.githubusercontent.com/jrddunbr/electrical-age.github.io/master/assets/favicon.ico)
