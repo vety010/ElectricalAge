@@ -138,5 +138,3 @@ Some graphics are public domain. These are:
 - src/main/resources/assets/eln/textures/blocks/smallsolarpanel.png
 - src/main/resources/assets/eln/textures/blocks/smallrotatingsolarpanel.png
 - src/main/resources/assets/eln/textures/blocks/2x3rotatingsolarpanel.png
-
-![logo](https://raw.githubusercontent.com/jrddunbr/electrical-age.github.io/master/assets/favicon.ico)
