@@ -24,7 +24,6 @@ public class WorldFailure implements IDestructible {
 
     INodeElement node;
 
-    VoltageSource boomboom = new VoltageSource("Boomboom source");
 
 
 
@@ -81,8 +80,8 @@ public class WorldFailure implements IDestructible {
         // ratio is max 0.25
 
 
-        e.getPrimaryVoltageSource().setU(e.getPrimaryVoltageSource().getU() * (1 + (Math.random() - 0.5) * 0.1));
-        e.getSecondaryVoltageSource().setU(e.getSecondaryVoltageSource().getU() * (1 + (Math.random() - 0.5) * 0.1));
+       /* e.getPrimaryVoltageSource().setU(e.getPrimaryVoltageSource().getU() * (1 + (Math.random() - 0.5) * 0.1));
+        e.getSecondaryVoltageSource().setU(e.getSecondaryVoltageSource().getU() * (1 + (Math.random() - 0.5) * 0.1));*/
 
         //e.getInterSystemProcess().
     }
