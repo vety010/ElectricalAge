@@ -7,7 +7,7 @@ Electrical Age (ELN) is a Minecraft Mod offering the ability to perform large-sc
 
 Look at the official project website [electrical-age.net](https://electrical-age.net/) and [the Wiki](http://wiki.electrical-age.net/) to get general information. More dedicated documentation on the way soon!
 
-This is a fork of Electrical Age maintained by Jared Dunbar (jrddunbr), with the intent to add features and push for active development. It includes all the features from the [upstream Electrical Age repository](https://github.com/Electrical-Age/ElectricalAge/).
+This is a fork of jrddunbr's Electrical Age fork maintained by Patriik and BomberPlayz.
 
 ## How to get started
 
