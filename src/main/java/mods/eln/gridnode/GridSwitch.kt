@@ -30,7 +30,7 @@ class GridSwitchDescriptor(
     GridSwitchElement::class.java,
     GridSwitchRender::class.java,
     "textures/wire.png",
-    Eln.instance.highVoltageCableDescriptor,
+    Eln.instance.highVoltageCableT2Descriptor,
     12
 ) {
     var rebound: Double = 0.0  // coef. of restitution
@@ -38,7 +38,7 @@ class GridSwitchDescriptor(
     var damping: Double = 4.0
     var drag: Double = 0.2  // 1/s
     var nominalU: Double = Eln.MVU
-    val resistance = Eln.instance.highVoltageCableDescriptor.electricalRs
+    val resistance = Eln.instance.highVoltageCableT2Descriptor.electricalRs
     var sinkMin = 20  // Essentially: full load
     var sinkMax = 1000  // Essentially: leakage
     var arcSound = "eln:arc"
@@ -149,7 +149,7 @@ class GridSwitchElement(node: TransparentNode, descriptor: TransparentNodeDescri
 
     val control = NbtElectricalGateInput("control")
     val power = NbtElectricalLoad("power").apply {
-        Eln.instance.meduimVoltageCableDescriptor.applyTo(this)
+        Eln.instance.mediumVoltageCableT2Descriptor.applyTo(this)
     }
     val powerSink = Resistor(power, null).apply { r = desc.sinkMax.toDouble() }
 
