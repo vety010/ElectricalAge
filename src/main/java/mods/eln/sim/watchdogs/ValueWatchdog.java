@@ -3,6 +3,7 @@ package mods.eln.sim.watchdogs;
 import mods.eln.*;
 import mods.eln.misc.Utils;
 import mods.eln.sim.IProcess;
+import mods.eln.sim.Simulator;
 
 public abstract class ValueWatchdog implements IProcess {
 
@@ -16,7 +17,7 @@ public abstract class ValueWatchdog implements IProcess {
     boolean boot = true;
     boolean joker = true;
 
-    double rand = Utils.rand(0.05, 0.25);
+    double rand = Utils.rand(0.5, 1.5);
 
     @Override
     public void process(double time) {
@@ -39,19 +40,17 @@ public abstract class ValueWatchdog implements IProcess {
         if (timeout > timeoutReset) {
             timeout = timeoutReset;
         }
-        //System.out.println(timeout);
-        if(timeout < 128 && timeout > 0.05) {
-            //destructible.sparkImpl(1);
-            Eln.delayedTask.add(() -> destructible.failureImpl(1));
-        }
-        if (timeout < 0 ) {
+        if (timeout < 0) {
             Utils.println("%s destroying %s",
                 getClass().getName(),
                 destructible.describe());
             if (!Eln.debugExplosions) {
-                Eln.delayedTask.add(() -> destructible.destructImpl());
-               // destructible.destructImpl();
+                // To prevent Concurrent Modification Exception
+                Eln.simulator.addDestructible(destructible);
+                //destructible.destructImpl();
             }
+
+
         }
     }
 

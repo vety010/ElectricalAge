@@ -479,4 +479,8 @@ class Simulator (val tickPeriod: Double, val electricalPeriod: Double, val elect
     fun removeAllThermalSlowProcess(process: List<IProcess>) {
         thermalSlowProcessList.removeAll(process)
     }
+
+    fun addDestructible(destructible: IDestructible) {
+        destructibleSet.add(destructible)
+    }
 }

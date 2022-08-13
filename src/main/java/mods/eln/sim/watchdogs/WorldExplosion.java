@@ -18,7 +18,6 @@ public class WorldExplosion implements IDestructible {
     String type;
 
 
-
     public WorldExplosion(Coordinate c) {
         this.c = c;
     }
@@ -64,14 +63,5 @@ public class WorldExplosion implements IDestructible {
         return String.format("%s (%s)", this.type, this.c.toString());
     }
 
-    @Override
-    public void failureImpl(float intensity) {
 
-        //c.world().spawnParticle("", c.x+(Math.random()-0.5), c.y+(Math.random()), c.z+(Math.random()-0.5), 0, 0, 0);
-    }
-
-    @Override
-    public void cancelFailure() {
-
-    }
 }

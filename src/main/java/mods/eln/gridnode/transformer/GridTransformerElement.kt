@@ -27,6 +27,9 @@ class GridTransformerElement(node: TransparentNode, descriptor: TransparentNodeD
     var primaryVoltageSource = VoltageSource("primaryVoltageSource", primaryLoad, null)
     var secondaryVoltageSource = VoltageSource("secondaryVoltageSource", secondaryLoad, null)
     var interSystemProcess = TransformerInterSystemProcess(primaryLoad, secondaryLoad, primaryVoltageSource, secondaryVoltageSource)
+
+
+
     internal var desc: GridTransformerDescriptor = descriptor as GridTransformerDescriptor
     internal var maxCurrent = desc.cableDescriptor.electricalMaximalCurrent.toFloat()
 
@@ -56,9 +59,14 @@ class GridTransformerElement(node: TransparentNode, descriptor: TransparentNodeD
         thermalLoadList.add(this)
     }
     internal val thermalWatchdog = ThermalLoadWatchDog().apply {
-        setLimit(desc.cableDescriptor.thermalWarmLimit, desc.cableDescriptor.thermalCoolLimit)
+        setLimit(desc.cableDescriptor.thermalWarmLimit+50, desc.cableDescriptor.thermalCoolLimit)
         set(thermalLoad)
         set(explosion)
+        slowProcessList.add(this)
+    }
+
+    internal val failureProcess = GridTransformerThermalFailureProcess(this).apply {
+
         slowProcessList.add(this)
     }
 
@@ -131,6 +139,8 @@ class GridTransformerElement(node: TransparentNode, descriptor: TransparentNodeD
         super.networkSerialize(stream)
         stream.writeFloat((secondaryLoad.current / maxCurrent).toFloat())
     }
+
+
 
     /*
     // TODO : Fix this?

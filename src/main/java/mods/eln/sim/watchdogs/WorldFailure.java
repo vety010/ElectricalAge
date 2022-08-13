@@ -71,30 +71,8 @@ public class WorldFailure implements IDestructible {
         return String.format("%s (%s)", this.type, this.c.toString());
     }
 
-    @Override
-    public void failureImpl(float intensity) {
-        //System.out.println(node.toString() + " failure");
-    if(node instanceof GridTransformerElement) {
-      //  System.out.println("gsfgdsfgfdsgdsfgdsf");
-        GridTransformerElement e = (GridTransformerElement) node;
-        // ratio is max 0.25
+    
 
 
-       /* e.getPrimaryVoltageSource().setU(e.getPrimaryVoltageSource().getU() * (1 + (Math.random() - 0.5) * 0.1));
-        e.getSecondaryVoltageSource().setU(e.getSecondaryVoltageSource().getU() * (1 + (Math.random() - 0.5) * 0.1));*/
 
-        //e.getInterSystemProcess().
-    }
-
-        //c.world().spawnParticle("", c.x+(Math.random()-0.5), c.y+(Math.random()), c.z+(Math.random()-0.5), 0, 0, 0);
-    }
-
-
-    @Override
-    public void cancelFailure() {
-        if(node instanceof GridTransformerElement) {
-            GridTransformerElement e = (GridTransformerElement) node;
-
-        }
-    }
 }
