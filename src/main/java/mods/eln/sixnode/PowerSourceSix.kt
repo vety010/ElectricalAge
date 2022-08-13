@@ -45,7 +45,7 @@ class PowerSourceDescriptor(name: String, obj: Obj3D) : SixNodeDescriptor(name, 
         super.addInformation(itemStack, entityPlayer, list, par4)
         Collections.addAll<String>(list, *I18N.tr("Provides an ideal power source\nwithout energy or power limitation.").split("\n").toTypedArray())
         list.add("")
-        list.add(I18N.tr("Internal resistance: %1$\u2126", Utils.plotValue(Eln.instance.lowVoltageCableDescriptor.electricalRs)))
+        list.add(I18N.tr("Internal resistance: %1$\u2126", Utils.plotValue(Eln.instance.lowVoltageCableT2Descriptor.electricalRs)))
         list.add("")
         list.add(I18N.tr("Creative block."))
     }
@@ -226,6 +226,6 @@ class PowerSourceRender(tileEntity: SixNodeEntity, side: Direction, descriptor: 
     }
 
     override fun getCableRender(lrdu: LRDU): CableRenderDescriptor {
-        return Eln.instance.veryHighVoltageCableDescriptor.render
+        return Eln.instance.veryHighVoltageCableT2Descriptor.render
     }
 }
