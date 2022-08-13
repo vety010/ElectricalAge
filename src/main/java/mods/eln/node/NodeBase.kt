@@ -154,15 +154,17 @@ abstract class NodeBase {
             }
             if (Eln.thermometerElement.checkSameItemStack(equipped)) {
                 val str = thermoMeterString(side)
+                if(str === null) return true;
                 addChatMessage(entityPlayer, str)
                 return true
             }
             if (Eln.allMeterElement.checkSameItemStack(equipped)) {
                 val str1 = multiMeterString(side)
                 val str2 = thermoMeterString(side)
-                var str = ""
-                str += str1
-                str += str2
+                var str = when(str2) {
+                    null -> str1
+                    else -> str1 + str2
+                }
                 if (str != "") addChatMessage(entityPlayer, str)
                 return true
             }
