@@ -10,7 +10,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.opengl.*;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -57,12 +56,12 @@ public class ElectricalSourceRender extends SixNodeElementRender {
     @Override
     public CableRenderDescriptor getCableRender(@NotNull LRDU lrdu) {
         if (descriptor.isSignalSource()) return Eln.instance.signalCableDescriptor.render;
-        if (voltage < Eln.instance.lowVoltageCableDescriptor.electricalMaximalVoltage)
-            return Eln.instance.lowVoltageCableDescriptor.render;
-        if (voltage < Eln.instance.meduimVoltageCableDescriptor.electricalMaximalVoltage)
-            return Eln.instance.meduimVoltageCableDescriptor.render;
-        if (voltage < Eln.instance.highVoltageCableDescriptor.electricalMaximalVoltage)
-            return Eln.instance.highVoltageCableDescriptor.render;
-        return Eln.instance.veryHighVoltageCableDescriptor.render;
+        if (voltage < Eln.instance.lowVoltageCableT2Descriptor.electricalMaximalVoltage)
+            return Eln.instance.lowVoltageCableT2Descriptor.render;
+        if (voltage < Eln.instance.mediumVoltageCableT2Descriptor.electricalMaximalVoltage)
+            return Eln.instance.mediumVoltageCableT2Descriptor.render;
+        if (voltage < Eln.instance.highVoltageCableT2Descriptor.electricalMaximalVoltage)
+            return Eln.instance.highVoltageCableT2Descriptor.render;
+        return Eln.instance.veryHighVoltageCableT2Descriptor.render;
     }
 }

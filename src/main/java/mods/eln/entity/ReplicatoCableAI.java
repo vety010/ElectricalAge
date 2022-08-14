@@ -41,7 +41,7 @@ public class ReplicatoCableAI extends EntityAIBase implements ITimeRemoverObserv
     public ReplicatoCableAI(ReplicatorEntity entity) {
         load.setAsPrivate();
         this.entity = entity;
-        Eln.instance.highVoltageCableDescriptor.applyTo(load);
+        Eln.instance.highVoltageCableT2Descriptor.applyTo(load);
         load.setRs(load.getRs() * 10);
         this.setMutexBits(1);
     }

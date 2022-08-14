@@ -65,7 +65,7 @@ class PowerInductorSixDescriptor(name: String,
         val core = inventory.getStackInSlot(PowerInductorSixContainer.coreId) ?: return ElectricalConstants.HIGH_IMPEDANCE
         val coreDescriptor = GenericItemUsingDamageDescriptor.getDescriptor(core) as FerromagneticCoreDescriptor
         val coreFactor = coreDescriptor.cableMultiplicator
-        return Eln.instance.lowVoltageCableDescriptor.electricalRs * coreFactor
+        return Eln.instance.lowVoltageCableT2Descriptor.electricalRs * coreFactor
     }
 
     override fun setParent(item: Item, damage: Int) {

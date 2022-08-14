@@ -189,8 +189,8 @@ class ElectricalFuseHolderElement(sixNode: SixNode, side: Direction, descriptor:
     }
 
     fun computeElectricalLoad() {
-        Eln.instance.veryHighVoltageCableDescriptor.applyTo(aLoad)
-        Eln.instance.veryHighVoltageCableDescriptor.applyTo(bLoad)
+        Eln.instance.veryHighVoltageCableT2Descriptor.applyTo(aLoad)
+        Eln.instance.veryHighVoltageCableT2Descriptor.applyTo(bLoad)
         refreshSwitchResistor()
     }
 

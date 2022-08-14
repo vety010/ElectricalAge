@@ -65,7 +65,7 @@ public class TurretElement extends TransparentNodeElement implements IConfigurab
         simulation = new TurretMechanicsSimulation((TurretDescriptor) descriptor);
         slowProcessList.add(simulation);
 
-        Eln.instance.highVoltageCableDescriptor.applyTo(load);
+        Eln.instance.highVoltageCableT2Descriptor.applyTo(load);
         electricalLoadList.add(load);
         electricalComponentList.add(powerResistor);
 
