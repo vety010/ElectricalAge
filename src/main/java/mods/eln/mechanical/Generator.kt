@@ -187,6 +187,7 @@ class GeneratorElement(node: TransparentNode, desc_: TransparentNodeDescriptor) 
 
         // TODO: Add running lights. (More. Electrical sparks, perhaps?)
         // TODO: Add the thermal explosions—there should be some.
+
     }
 
     inner class GeneratorElectricalProcess : IProcess, IRootSystemPreStepProcess {

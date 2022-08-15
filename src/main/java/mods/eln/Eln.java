@@ -124,6 +124,7 @@ import mods.eln.sixnode.wirelesssignal.tx.WirelessSignalTxDescriptor;
 import mods.eln.sixnode.wirelesssignal.tx.WirelessSignalTxElement;
 import mods.eln.sound.SoundCommand;
 import mods.eln.transparentnode.*;
+import mods.eln.transparentnode.arcfurnace.ArcFurnaceDescriptor;
 import mods.eln.transparentnode.autominer.AutoMinerDescriptor;
 import mods.eln.transparentnode.battery.BatteryDescriptor;
 import mods.eln.transparentnode.computercraftio.PeripheralHandler;
@@ -808,7 +809,7 @@ public class Eln {
                     highVoltageCableDescriptor,
                     Kind.OVERHEAD,
                     40,
-                    51200);
+                    51200, false);
             descriptor.setRenderOffset(
                 Vec3.createVectorHelper(0.0, -0.1, 0.0)
             );
@@ -829,7 +830,7 @@ public class Eln {
                     highVoltageCableDescriptor,
                     Kind.TRANSFORMER_TO_GROUND,
                     40,
-                    51200);
+                    51200, false);
             GhostGroup g = new GhostGroup();
             g.addElement(0, 1, 0);
             g.addElement(0, 2, 0);
@@ -846,7 +847,7 @@ public class Eln {
                     highVoltageCableDescriptor,
                     Kind.OVERHEAD,
                     96,
-                    51200);
+                    51200, true);
             GhostGroup g = new GhostGroup();
             g.addRectangle(-1, 1, 0, 0, -1, 1);
             g.addRectangle(0, 0, 1, 8, 0, 0);
@@ -864,7 +865,7 @@ public class Eln {
                     highVoltageCableDescriptor,
                     Kind.SHUNT_TO_GROUND,
                     40,
-                    51200);
+                    51200, false);
             GhostGroup g = new GhostGroup();
             g.addElement(0, 1, 0);
             g.addElement(0, 2, 0);
@@ -3128,10 +3129,9 @@ public class Eln {
             desc.setRunningSound("eln:arc_furnace");
 
         }
-        /*
 
-        To be released at a later date. Needs a bit of code in the backend, and there's a rendering bug and some other
-        minor issues to be resolved.
+        //To be released at a later date. Needs a bit of code in the backend, and there's a rendering bug and some other
+        //minor issues to be resolved.
 
         {
             subId = 1;
@@ -3140,10 +3140,10 @@ public class Eln {
             ArcFurnaceDescriptor desc = new ArcFurnaceDescriptor(name, obj.getObj("arcfurnace"));
 
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
+
             //desc.setRunningSound("eln:arc_furnace");
 
         }
-        */
     }
 
     private void registerPlateMachine(int id) {

@@ -17,7 +17,7 @@ class ElectricalPoleDescriptor(name: String,
                                obj: Obj3D, cableTexture: String,
                                cableDescriptor: ElectricalCableDescriptor,
                                val kind: Kind,
-                               connectRange: Int, val voltageLimit: Double)
+                               connectRange: Int, val voltageLimit: Double, isTier2TransmissionTower: Boolean)
     : GridDescriptor(name, obj, ElectricalPoleElement::class.java, ElectricalPoleRender::class.java, cableTexture, cableDescriptor, connectRange) {
     val minimalLoadToHum = 0.2f
 
@@ -28,7 +28,8 @@ class ElectricalPoleDescriptor(name: String,
         obj.getPart("foot")?.let {
             // Don't draw the foot on the T1 utility pole.
             // XXX is there a better way to check for the model?
-            if (kind != Kind.OVERHEAD || name == "Transmission Tower")
+            // - yeah, not the model but anyway it works
+            if (kind != Kind.OVERHEAD || isTier2TransmissionTower )
                 static_parts.add(it)
         }
         if (includeTransformer) {

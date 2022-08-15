@@ -105,12 +105,14 @@ class ArcFurnaceElement(node: TransparentNode, descriptor: TransparentNodeDescri
         connect()
     }
 
-    override fun hasGui(): Boolean {
-        return true
-    }
+    override fun hasGui() = true
 
     override fun newContainer(side: Direction, player: EntityPlayer): Container {
         return ArcFurnaceContainer(node, player, inventory)
+    }
+
+    fun applyTo(Resistor: Resistor) {
+
     }
 }
 
@@ -136,27 +138,27 @@ class ArcFurnaceRender(override var tileEntity: TransparentNodeEntity, descripto
 class ArcFurnaceContainer(val node: NodeBase?, player: EntityPlayer?, inventory: IInventory): BasicContainer(
     player, inventory, arrayOf<Slot>(
         GenericItemUsingDamageSlot(
-            inventory, 0, 0, 0, 1,
+            inventory, 0, 8, 8, 1,
             GraphiteDescriptor::class.java,
             SlotSkin.medium, arrayOf("Graphite Slot")
         ),
         GenericItemUsingDamageSlot(
-            inventory, 1, 30, 0, 1,
+            inventory, 1, 16 * 2 + 2 * 2 + 8, 8, 1,
             GraphiteDescriptor::class.java,
             SlotSkin.medium, arrayOf("Graphite Slot")
         ),
         GenericItemUsingDamageSlot(
-            inventory, 2, 15, 15, 1,
+            inventory, 2, 16 + 2 + 8, 16 + 2 + 8, 1,
             GraphiteDescriptor::class.java,
             SlotSkin.medium, arrayOf("Graphite Slot")
         ),
         GenericItemUsingDamageSlot(
-            inventory, 3, 15, 30, 64,
+            inventory, 3, 16 + 2 + 8, 16 * 2 + 2 * 2 + 8, 64,
             GraphiteDescriptor::class.java,
             SlotSkin.medium, arrayOf("Input Slot")
         ),
         GenericItemUsingDamageSlot(
-            inventory, 4, 15, 45, 64,
+            inventory, 4, 16 + 2 + 8, 16 * 3 + 2 * 3 + 8, 64,
             GraphiteDescriptor::class.java,
             SlotSkin.medium, arrayOf("Output Slot")
         )
@@ -164,6 +166,7 @@ class ArcFurnaceContainer(val node: NodeBase?, player: EntityPlayer?, inventory:
 
 class ArcFurnaceGui(player: EntityPlayer?, inventory: IInventory, render: ArcFurnaceRender): GuiContainerEln(ArcFurnaceContainer(null, player, inventory)) {
     override fun newHelper(): GuiHelperContainer {
-            return GuiHelperContainer(this, 176, 166, 50, 84)
+            //return GuiHelperContainer(this, 176, 166, 50, 84)
+        return GuiHelperContainer(this, 176, 166, 8, 84)
     }
 }

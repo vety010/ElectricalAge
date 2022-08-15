@@ -247,7 +247,7 @@ public class CableRender {
                 }
             }
 
-            //no wrappeConection ?
+            //no wrapperConnection ?
             if (!NodeBase.isBlockWrappable(element.tileEntity.getWorldObj().getBlock(x2, y2, z2), element.tileEntity.getWorldObj(), x2, y2, z2)) {
                 continue;
             } else {
