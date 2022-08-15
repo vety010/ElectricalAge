@@ -12,7 +12,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ArcFurnaceContainer extends BasicContainer implements INodeContainer {
-    NodeBase node = null;
+    NodeBase node;
     public ArcFurnaceContainer(NodeBase node, EntityPlayer ply, IInventory inventory) {
         super( ply, inventory, new Slot[]{
             new GenericItemUsingDamageSlot(inventory, 0, 8, 8, 1,
@@ -31,7 +31,7 @@ public class ArcFurnaceContainer extends BasicContainer implements INodeContaine
             new GenericItemUsingDamageSlot(inventory, 4, 16 + 2 + 8, 16 * 3 + 2 * 3 + 8, 64,
                 GraphiteDescriptor.class, ISlotSkin.SlotSkin.medium, new String[]{"Input Slot"}),
 
-            new GenericItemUsingDamageSlot(inventory, 5, 128, 10, 5,
+            new GenericItemUsingDamageSlot(inventory, 5, 128, 10, 1,
                 MachineBoosterDescriptor.class, ISlotSkin.SlotSkin.medium, new String[]{"Booster upgrade Slot"})
         });
         this.node = node;
