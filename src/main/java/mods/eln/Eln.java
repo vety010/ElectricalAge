@@ -275,11 +275,27 @@ public class Eln {
     public GraphiteDescriptor GraphiteDescriptor;
 
     public ElectricalCableDescriptor creativeCableDescriptor;
-    public ElectricalCableDescriptor veryHighVoltageCableDescriptor;
-    public ElectricalCableDescriptor highVoltageCableDescriptor;
+
+    public ElectricalCableDescriptor veryHighVoltageCableT1Descriptor;
+    public ElectricalCableDescriptor veryHighVoltageCableT2Descriptor;
+    public ElectricalCableDescriptor veryHighVoltageCableT3Descriptor;
+
+
+    public ElectricalCableDescriptor highVoltageCableT1Descriptor;
+    public ElectricalCableDescriptor highVoltageCableT2Descriptor;
+    public ElectricalCableDescriptor highVoltageCableT3Descriptor;
+
+
     public ElectricalCableDescriptor signalCableDescriptor;
-    public ElectricalCableDescriptor lowVoltageCableDescriptor;
-    public ElectricalCableDescriptor meduimVoltageCableDescriptor;
+
+
+    public ElectricalCableDescriptor lowVoltageCableT1Descriptor;
+    public ElectricalCableDescriptor lowVoltageCableT2Descriptor;
+    public ElectricalCableDescriptor lowVoltageCableT3Descriptor;
+
+    public ElectricalCableDescriptor mediumVoltageCableT1Descriptor;
+    public ElectricalCableDescriptor mediumVoltageCableT2Descriptor;
+    public ElectricalCableDescriptor mediumVoltageCableT3Descriptor;
     public ElectricalCableDescriptor signalBusCableDescriptor;
 
     public static PortableNaNDescriptor portableNaNDescriptor = null;
@@ -787,7 +803,7 @@ public class Eln {
         {
             subId = 3;
             GridTransformerDescriptor descriptor =
-                new GridTransformerDescriptor("Grid DC-DC Converter", obj.getObj("GridConverter"), "textures/wire.png", highVoltageCableDescriptor);
+                new GridTransformerDescriptor("Grid DC-DC Converter", obj.getObj("GridConverter"), "textures/wire.png", highVoltageCableT2Descriptor);
             GhostGroup g = new GhostGroup();
             g.addElement(1, 0, 0);
             g.addElement(0, 0, -1);
@@ -806,7 +822,7 @@ public class Eln {
                     "Utility Pole",
                     obj.getObj("UtilityPole"),
                     "textures/wire.png",
-                    highVoltageCableDescriptor,
+                    highVoltageCableT2Descriptor,
                     Kind.OVERHEAD,
                     40,
                     51200, false);
@@ -827,7 +843,7 @@ public class Eln {
                     "Utility Pole w/DC-DC Converter",
                     obj.getObj("UtilityPole"),
                     "textures/wire.png",
-                    highVoltageCableDescriptor,
+                    highVoltageCableT2Descriptor,
                     Kind.TRANSFORMER_TO_GROUND,
                     40,
                     51200, false);
@@ -844,7 +860,7 @@ public class Eln {
                 new ElectricalPoleDescriptor("Transmission Tower",
                     obj.getObj("TransmissionTower"),
                     "textures/wire.png",
-                    highVoltageCableDescriptor,
+                    highVoltageCableT2Descriptor,
                     Kind.OVERHEAD,
                     96,
                     51200, true);
@@ -862,7 +878,7 @@ public class Eln {
                     "Direct Utility Pole",
                     obj.getObj("UtilityPole"),
                     "textures/wire.png",
-                    highVoltageCableDescriptor,
+                    highVoltageCableT2Descriptor,
                     Kind.SHUNT_TO_GROUND,
                     40,
                     51200, false);
@@ -1256,10 +1272,26 @@ public class Eln {
 
     public CableRenderDescriptor stdCableRenderSignal;
     public CableRenderDescriptor stdCableRenderSignalBus;
-    public CableRenderDescriptor stdCableRender50V;
-    public CableRenderDescriptor stdCableRender200V;
-    public CableRenderDescriptor stdCableRender800V;
-    public CableRenderDescriptor stdCableRender3200V;
+
+
+    public CableRenderDescriptor stdCableRendert1_50V;
+    public CableRenderDescriptor stdCableRendert2_50V;
+    public CableRenderDescriptor stdCableRendert3_50V;
+
+
+    public CableRenderDescriptor stdCableRendert1_200V;
+    public CableRenderDescriptor stdCableRendert2_200V;
+    public CableRenderDescriptor stdCableRendert3_200V;
+
+
+    public CableRenderDescriptor stdCableRendert1_800V;
+    public CableRenderDescriptor stdCableRendert2_800V;
+    public CableRenderDescriptor stdCableRendert3_800V;
+
+
+    public CableRenderDescriptor stdCableRendert1_3200V;
+    public CableRenderDescriptor stdCableRendert2_3200V;
+    public CableRenderDescriptor stdCableRendert3_3200V;
     public CableRenderDescriptor stdCableRenderCreative;
 
     public static final double gateOutputCurrent = 0.100;
@@ -1307,12 +1339,29 @@ public class Eln {
             signalCableDescriptor = desc;
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
+
+        {
+            subId = 3;
+            name = TR_NAME(Type.NONE, "Low Voltage Cable T1");
+            stdCableRendert1_50V = new CableRenderDescriptor("eln", "sprites/cable.png", (float) (1.95f * 0.75), 0.85f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert1_50V, "For low voltage with high current.", false);
+            lowVoltageCableT1Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                LVU,
+                LVP()*0.75,
+                0.2 / 20,
+                LVU * 1.3,
+                LVP() * 0.75 * 1.2,
+                20
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
         {
             subId = 4;
-            name = TR_NAME(Type.NONE, "Low Voltage Cable");
-            stdCableRender50V = new CableRenderDescriptor("eln", "sprites/cable.png", 1.95f, 0.95f);
-            desc = new ElectricalCableDescriptor(name, stdCableRender50V, "For low voltage with high current.", false);
-            lowVoltageCableDescriptor = desc;
+            name = TR_NAME(Type.NONE, "Low Voltage Cable T2");
+            stdCableRendert2_50V = new CableRenderDescriptor("eln", "sprites/cable.png", 1.95f, 0.95f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert2_50V, "For low voltage with high current.", false);
+            lowVoltageCableT2Descriptor = desc;
             desc.setPhysicalConstantLikeNormalCable(
                 LVU,
                 LVP(),
@@ -1324,11 +1373,44 @@ public class Eln {
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
         {
+            subId = 5;
+            name = TR_NAME(Type.NONE, "Low Voltage Cable T3");
+            stdCableRendert3_50V = new CableRenderDescriptor("eln", "sprites/cable.png", (float) (1.95f * 1.25), 1.05f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert3_50V, "For low voltage with high current.", false);
+            lowVoltageCableT3Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                LVU,
+                LVP() * 1.75,
+                0.2 / 20,
+                LVU * 1.3,
+                LVP() * 1.75 * 1.2,
+                20
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+
+        {
+            subId = 7;
+            name = TR_NAME(Type.NONE, "Medium Voltage Cable T1");
+            stdCableRendert1_200V = new CableRenderDescriptor("eln","sprites/cable.png", (float) (2.95f * 0.75), 0.85f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert1_200V,"For medium voltage with medium current", false);
+            mediumVoltageCableT1Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                MVU,
+                MVP() * 0.75,
+                0.10 / 20,
+                MVU * 1.3,
+                MVP() * 0.75 * 1.2,
+                30
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+        {
             subId = 8;
-            name = TR_NAME(Type.NONE, "Medium Voltage Cable");
-            stdCableRender200V = new CableRenderDescriptor("eln","sprites/cable.png", 2.95f, 0.95f);
-            desc = new ElectricalCableDescriptor(name, stdCableRender200V,"For medium voltage with medium current", false);
-            meduimVoltageCableDescriptor = desc;
+            name = TR_NAME(Type.NONE, "Medium Voltage Cable T2");
+            stdCableRendert2_200V = new CableRenderDescriptor("eln","sprites/cable.png", 2.95f, 0.95f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert2_200V,"For medium voltage with medium current", false);
+            mediumVoltageCableT2Descriptor = desc;
             desc.setPhysicalConstantLikeNormalCable(
                 MVU,
                 MVP(),
@@ -1340,11 +1422,44 @@ public class Eln {
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
         {
+            subId = 9;
+            name = TR_NAME(Type.NONE, "Medium Voltage Cable T3");
+            stdCableRendert3_200V = new CableRenderDescriptor("eln","sprites/cable.png", (float) (2.95f * 1.75), 1.05f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert3_200V,"For medium voltage with medium current", false);
+            mediumVoltageCableT3Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                MVU,
+                MVP() * 1.75,
+                0.10 / 20,
+                MVU * 1.3,
+                MVP() * 1.75 * 1.2,
+                30
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+
+        {
+            subId = 11;
+            name = TR_NAME(Type.NONE, "High Voltage Cable T1");
+            stdCableRendert1_800V = new CableRenderDescriptor("eln","sprites/cable.png", (float) (3.95f * 0.75), 1.85f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert1_800V,"For high voltage with some current", false);
+            highVoltageCableT1Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                HVU,
+                HVP() * 0.75,
+                0.025 * 5 / 4 / 20,
+                HVU * 1.3,
+                HVP() * 0.75 * 1.2,
+                40
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+        {
             subId = 12;
-            name = TR_NAME(Type.NONE, "High Voltage Cable");
-            stdCableRender800V = new CableRenderDescriptor("eln","sprites/cable.png", 3.95f, 1.95f);
-            desc = new ElectricalCableDescriptor(name, stdCableRender800V,"For high voltage with some current", false);
-            highVoltageCableDescriptor = desc;
+            name = TR_NAME(Type.NONE, "High Voltage Cable T2");
+            stdCableRendert2_800V = new CableRenderDescriptor("eln","sprites/cable.png", 3.95f, 1.95f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert2_800V,"For high voltage with some current", false);
+            highVoltageCableT2Descriptor = desc;
             desc.setPhysicalConstantLikeNormalCable(
                 HVU,
                 HVP(),
@@ -1356,11 +1471,44 @@ public class Eln {
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
         {
+            subId = 13;
+            name = TR_NAME(Type.NONE, "High Voltage Cable T3");
+            stdCableRendert3_800V = new CableRenderDescriptor("eln","sprites/cable.png", (float) (3.95f * 1.75), 2.05f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert3_800V,"For high voltage with some current", false);
+            highVoltageCableT3Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                HVU,
+                HVP() * 1.75,
+                0.025 * 5 / 4 / 20,
+                HVU * 1.3,
+                HVP() * 1.75 * 1.2,
+                40
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+
+        {
+            subId = 15;
+            name = TR_NAME(Type.NONE, "Very High Voltage Cable T1");
+            stdCableRendert1_3200V = new CableRenderDescriptor("eln", "sprites/cableVHV.png", (float) (3.95f * 0.75), 1.85f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert1_3200V, "For very high voltage with low current", false);
+            veryHighVoltageCableT1Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                VVU,
+                VVP() * 0.75,
+                0.025 * 5 / 4 / 20 / 8,
+                VVU * 1.3,
+                VVP() * 0.75 * 1.2,
+                40
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+        {
             subId = 16;
-            name = TR_NAME(Type.NONE, "Very High Voltage Cable");
-            stdCableRender3200V = new CableRenderDescriptor("eln", "sprites/cableVHV.png", 3.95f, 1.95f);
-            desc = new ElectricalCableDescriptor(name, stdCableRender3200V, "For very high voltage with low current", false);
-            veryHighVoltageCableDescriptor = desc;
+            name = TR_NAME(Type.NONE, "Very High Voltage Cable T2");
+            stdCableRendert2_3200V = new CableRenderDescriptor("eln", "sprites/cableVHV.png", 3.95f, 1.95f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert2_3200V, "For very high voltage with low current", false);
+            veryHighVoltageCableT2Descriptor = desc;
             desc.setPhysicalConstantLikeNormalCable(
                 VVU,
                 VVP(),
@@ -1371,6 +1519,23 @@ public class Eln {
             );
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
+        {
+            subId = 17;
+            name = TR_NAME(Type.NONE, "Very High Voltage Cable T3");
+            stdCableRendert3_3200V = new CableRenderDescriptor("eln", "sprites/cableVHV.png", (float) (3.95f * 1.75), 2.05f);
+            desc = new ElectricalCableDescriptor(name, stdCableRendert3_3200V, "For very high voltage with low current", false);
+            veryHighVoltageCableT3Descriptor = desc;
+            desc.setPhysicalConstantLikeNormalCable(
+                VVU,
+                VVP() * 1.75,
+                0.025 * 5 / 4 / 20 / 8,
+                VVU * 1.3,
+                VVP() * 1.75 * 1.2,
+                40
+            );
+            sixNodeItem.addDescriptor(subId + (id << 6), desc);
+        }
+
         {
             subId = 24;
             name = TR_NAME(Type.NONE, "Creative Cable");
@@ -1737,11 +1902,11 @@ public class Eln {
 
         sixNodeItem.addDescriptor(15 + (id << 6),
             new EmergencyLampDescriptor(TR_NAME(Type.NONE, "50V Emergency Lamp"),
-                lowVoltageCableDescriptor, 10 * 60 * 10, 10, 5, 6, obj.getObj("EmergencyExitLighting")));
+                lowVoltageCableT2Descriptor, 10 * 60 * 10, 10, 5, 6, obj.getObj("EmergencyExitLighting")));
 
         sixNodeItem.addDescriptor(16 + (id << 6),
             new EmergencyLampDescriptor(TR_NAME(Type.NONE, "200V Emergency Lamp"),
-                meduimVoltageCableDescriptor, 10 * 60 * 20, 25, 10, 8, obj.getObj("EmergencyExitLighting")));
+                mediumVoltageCableT2Descriptor, 10 * 60 * 20, 25, 10, 8, obj.getObj("EmergencyExitLighting")));
 
         {
             subId = 17;
@@ -1860,7 +2025,7 @@ public class Eln {
                 10, // double Imax,
                 1, 10,
                 sixNodeThermalLoadInitializer.copy(),
-                lowVoltageCableDescriptor,
+                lowVoltageCableT2Descriptor,
                 obj.getObj("PowerElectricPrimitives"));
 
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -1880,7 +2045,7 @@ public class Eln {
                 25, // double Imax,
                 1, 25,
                 sixNodeThermalLoadInitializer.copy(),
-                lowVoltageCableDescriptor,
+                lowVoltageCableT2Descriptor,
                 obj.getObj("PowerElectricPrimitives"));
 
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -1909,7 +2074,7 @@ public class Eln {
             name = TR_NAME(Type.NONE, "Signal 20H inductor");
 
             SignalInductorDescriptor desc = new SignalInductorDescriptor(
-                name, 20, lowVoltageCableDescriptor
+                name, 20, lowVoltageCableT2Descriptor
             );
 
             desc.setDefaultIcon("empty-texture");
@@ -1988,7 +2153,7 @@ public class Eln {
                 10, 1// double nominalTao,double nominalConnectionDrop
             );
             LargeRheostatDescriptor desc = new LargeRheostatDescriptor(
-                name, dissipator, veryHighVoltageCableDescriptor, SeriesFunction.newE12(0)
+                name, dissipator, veryHighVoltageCableT2Descriptor, SeriesFunction.newE12(0)
             );
 
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -2036,8 +2201,8 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "Very High Voltage Switch");
 
-            desc = new ElectricalSwitchDescriptor(name, stdCableRender3200V,
-                obj.getObj("HighVoltageSwitch"), VVU, VVP(), veryHighVoltageCableDescriptor.electricalRs * 2,// nominalVoltage,
+            desc = new ElectricalSwitchDescriptor(name, stdCableRendert2_3200V,
+                obj.getObj("HighVoltageSwitch"), VVU, VVP(), veryHighVoltageCableT2Descriptor.electricalRs * 2,// nominalVoltage,
                 // nominalPower,
                 // nominalDropFactor,
                 VVU * 1.5, VVP() * 1.2,// maximalVoltage, maximalPower
@@ -2051,8 +2216,8 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "High Voltage Switch");
 
-            desc = new ElectricalSwitchDescriptor(name, stdCableRender800V,
-                obj.getObj("HighVoltageSwitch"), HVU, HVP(), highVoltageCableDescriptor.electricalRs * 2,// nominalVoltage,
+            desc = new ElectricalSwitchDescriptor(name, stdCableRendert2_800V,
+                obj.getObj("HighVoltageSwitch"), HVU, HVP(), highVoltageCableT2Descriptor.electricalRs * 2,// nominalVoltage,
                 // nominalPower,
                 // nominalDropFactor,
                 HVU * 1.5, HVP() * 1.2,// maximalVoltage, maximalPower
@@ -2065,8 +2230,8 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "Low Voltage Switch");
 
-            desc = new ElectricalSwitchDescriptor(name, stdCableRender50V,
-                obj.getObj("LowVoltageSwitch"), LVU, LVP(), lowVoltageCableDescriptor.electricalRs * 2,// nominalVoltage,
+            desc = new ElectricalSwitchDescriptor(name, stdCableRendert2_50V,
+                obj.getObj("LowVoltageSwitch"), LVU, LVP(), lowVoltageCableT2Descriptor.electricalRs * 2,// nominalVoltage,
                 // nominalPower,
                 // nominalDropFactor,
                 LVU * 1.5, LVP() * 1.2,// maximalVoltage, maximalPower
@@ -2079,8 +2244,8 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "Medium Voltage Switch");
 
-            desc = new ElectricalSwitchDescriptor(name, stdCableRender200V,
-                obj.getObj("LowVoltageSwitch"), MVU, MVP(), meduimVoltageCableDescriptor.electricalRs * 2,// nominalVoltage,
+            desc = new ElectricalSwitchDescriptor(name, stdCableRendert2_200V,
+                obj.getObj("LowVoltageSwitch"), MVU, MVP(), mediumVoltageCableT2Descriptor.electricalRs * 2,// nominalVoltage,
                 // nominalPower,
                 // nominalDropFactor,
                 MVU * 1.5, MVP() * 1.2,// maximalVoltage, maximalPower
@@ -2247,7 +2412,7 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "Lead Fuse for low voltage cables");
 
-            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, lowVoltageCableDescriptor, obj.getObj("ElectricalFuse"));
+            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, lowVoltageCableT2Descriptor, obj.getObj("ElectricalFuse"));
             sharedItem.addElement(subId + (id << 6), desc);
         }
         {
@@ -2255,7 +2420,7 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "Lead Fuse for medium voltage cables");
 
-            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, meduimVoltageCableDescriptor, obj.getObj("ElectricalFuse"));
+            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, mediumVoltageCableT2Descriptor, obj.getObj("ElectricalFuse"));
             sharedItem.addElement(subId + (id << 6), desc);
         }
         {
@@ -2263,7 +2428,7 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "Lead Fuse for high voltage cables");
 
-            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, highVoltageCableDescriptor, obj.getObj("ElectricalFuse"));
+            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, highVoltageCableT2Descriptor, obj.getObj("ElectricalFuse"));
             sharedItem.addElement(subId + (id << 6), desc);
         }
         {
@@ -2271,7 +2436,7 @@ public class Eln {
 
             name = TR_NAME(Type.NONE, "Lead Fuse for very high voltage cables");
 
-            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, veryHighVoltageCableDescriptor, obj.getObj("ElectricalFuse"));
+            ElectricalFuseDescriptor desc = new ElectricalFuseDescriptor(name, veryHighVoltageCableT2Descriptor, obj.getObj("ElectricalFuse"));
             sharedItem.addElement(subId + (id << 6), desc);
         }
         {
@@ -2618,7 +2783,7 @@ public class Eln {
 
             desc = new ElectricalRelayDescriptor(
                 name, obj.getObj("RelayBig"),
-                lowVoltageCableDescriptor);
+                lowVoltageCableT2Descriptor);
 
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
@@ -2629,7 +2794,7 @@ public class Eln {
 
             desc = new ElectricalRelayDescriptor(
                 name, obj.getObj("RelayBig"),
-                meduimVoltageCableDescriptor);
+                mediumVoltageCableT2Descriptor);
 
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
@@ -2640,7 +2805,7 @@ public class Eln {
 
             desc = new ElectricalRelayDescriptor(
                 name, obj.getObj("relay800"),
-                highVoltageCableDescriptor);
+                highVoltageCableT2Descriptor);
 
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
@@ -2651,7 +2816,7 @@ public class Eln {
 
             desc = new ElectricalRelayDescriptor(
                 name, obj.getObj("relay800"),
-                veryHighVoltageCableDescriptor);
+                veryHighVoltageCableT2Descriptor);
 
             sixNodeItem.addDescriptor(subId + (id << 6), desc);
         }
@@ -2877,9 +3042,9 @@ public class Eln {
             double nominalU = LVU;
             double nominalP = 1000 * heatTurbinePowerFactor; // it was 300 before
             double nominalDeltaT = 250;
-            TurbineDescriptor desc = new TurbineDescriptor(name, "turbineb", lowVoltageCableDescriptor.render,
+            TurbineDescriptor desc = new TurbineDescriptor(name, "turbineb", lowVoltageCableT2Descriptor.render,
                 TtoU.duplicate(nominalDeltaT, nominalU), PoutToPin.duplicate(nominalP, nominalP), nominalDeltaT,
-                nominalU, nominalP, nominalP / 40, lowVoltageCableDescriptor.electricalRs * RsFactor, 25.0,
+                nominalU, nominalP, nominalP / 40, lowVoltageCableT2Descriptor.electricalRs * RsFactor, 25.0,
                 nominalDeltaT / 40, nominalP / (nominalU / 25), "eln:heat_turbine_50v");
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
@@ -2891,9 +3056,9 @@ public class Eln {
             double nominalU = MVU;
             double nominalP = 2000 * heatTurbinePowerFactor;
             double nominalDeltaT = 350;
-            TurbineDescriptor desc = new TurbineDescriptor(name, "turbinebblue", meduimVoltageCableDescriptor.render,
+            TurbineDescriptor desc = new TurbineDescriptor(name, "turbinebblue", mediumVoltageCableT2Descriptor.render,
                 TtoU.duplicate(nominalDeltaT, nominalU), PoutToPin.duplicate(nominalP, nominalP), nominalDeltaT,
-                nominalU, nominalP, nominalP / 40, meduimVoltageCableDescriptor.electricalRs * RsFactor, 50.0,
+                nominalU, nominalP, nominalP / 40, mediumVoltageCableT2Descriptor.electricalRs * RsFactor, 50.0,
                 nominalDeltaT / 40, nominalP / (nominalU / 25), "eln:heat_turbine_200v");
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
@@ -2914,7 +3079,7 @@ public class Eln {
             GeneratorDescriptor desc = new GeneratorDescriptor(
                 TR_NAME(Type.NONE, "Generator"),
                 obj.getObj("Generator"),
-                highVoltageCableDescriptor,
+                highVoltageCableT2Descriptor,
                 nominalRads, nominalU,
                 nominalP / (nominalU / 25),
                 nominalP,
@@ -2978,7 +3143,7 @@ public class Eln {
             MotorDescriptor desc = new MotorDescriptor(
                 TR_NAME(Type.NONE, "Shaft Motor"),
                 obj.getObj("Motor"),
-                veryHighVoltageCableDescriptor,
+                veryHighVoltageCableT2Descriptor,
                 nominalRads,
                 nominalU,
                 nominalP,
@@ -3080,7 +3245,7 @@ public class Eln {
                 "maceratora", LVU, 200,// double nominalU,double nominalP,
                 LVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor cable
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor cable
                 maceratorRecipes);
 
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -3095,7 +3260,7 @@ public class Eln {
                 "maceratorb", MVU, 2000,// double nominalU,double nominalP,
                 MVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                meduimVoltageCableDescriptor,// ElectricalCableDescriptor
+                mediumVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable
                 maceratorRecipes);
 
@@ -3122,7 +3287,7 @@ public class Eln {
                 HVU, 10000,// double nominalU,double nominalP,
                 HVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                highVoltageCableDescriptor,// ElectricalCableDescriptor cable
+                highVoltageCableT2Descriptor,// ElectricalCableDescriptor cable
                 arcFurnaceRecipes);
 
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -3160,7 +3325,7 @@ public class Eln {
                 LVU, 200,// double nominalU,double nominalP,
                 LVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor cable
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor cable
                 plateMachineRecipes);
 
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -3178,7 +3343,7 @@ public class Eln {
                 MVU, 2000,// double nominalU,double nominalP,
                 MVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                meduimVoltageCableDescriptor,// ElectricalCableDescriptor
+                mediumVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable
                 plateMachineRecipes);
 
@@ -3198,7 +3363,7 @@ public class Eln {
 
             EggIncubatorDescriptor desc = new EggIncubatorDescriptor(
                 name, obj.getObj("eggincubator"),
-                lowVoltageCableDescriptor,
+                lowVoltageCableT2Descriptor,
                 LVU, 50);
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
@@ -3219,7 +3384,7 @@ public class Eln {
                 LVU, 200,// double nominalU,double nominalP,
                 LVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor cable
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor cable
                 compressorRecipes);
 
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -3238,7 +3403,7 @@ public class Eln {
                 MVU, 2000,// double nominalU,double nominalP,
                 MVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                meduimVoltageCableDescriptor,// ElectricalCableDescriptor
+                mediumVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable
                 compressorRecipes);
 
@@ -3264,7 +3429,7 @@ public class Eln {
                 LVU, 200,// double nominalU,double nominalP,
                 LVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor cable
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor cable
                 magnetiserRecipes);
 
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
@@ -3282,7 +3447,7 @@ public class Eln {
                 MVU, 2000,// double nominalU,double nominalP,
                 MVU * 1.25,// double maximalU,
                 new ThermalLoadInitializer(80, -100, 10, 100000.0),// thermal,
-                meduimVoltageCableDescriptor,// ElectricalCableDescriptor
+                mediumVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable
                 magnetiserRecipes);
 
@@ -3338,7 +3503,7 @@ public class Eln {
 
             SolarPanelDescriptor desc = new SolarPanelDescriptor(name,// String
                 // name,
-                obj.getObj("smallsolarpannelrot"), lowVoltageCableDescriptor.render,
+                obj.getObj("smallsolarpannelrot"), lowVoltageCableT2Descriptor.render,
                 ghostGroup, 0, 1, 0,// GhostGroup ghostGroup, int
                 // solarOffsetX,int solarOffsetY,int
                 // solarOffsetZ,
@@ -3361,7 +3526,7 @@ public class Eln {
             ghostGroup.removeElement(0, 0, 0);
 
             SolarPanelDescriptor desc = new SolarPanelDescriptor(name,
-                obj.getObj("bigSolarPanel"), meduimVoltageCableDescriptor.render,
+                obj.getObj("bigSolarPanel"), mediumVoltageCableT2Descriptor.render,
                 ghostGroup, 1, 1, 0,
                 groundCoordinate,
                 LVSolarU * 2, solarPanelBasePower * solarPanelPowerFactor * 8,
@@ -3382,7 +3547,7 @@ public class Eln {
             ghostGroup.removeElement(0, 0, 0);
 
             SolarPanelDescriptor desc = new SolarPanelDescriptor(name,
-                obj.getObj("bigSolarPanelrot"), meduimVoltageCableDescriptor.render,
+                obj.getObj("bigSolarPanelrot"), mediumVoltageCableT2Descriptor.render,
                 ghostGroup, 1, 1, 1,
                 groundCoordinate,
                 LVSolarU * 2, solarPanelBasePower * solarPanelPowerFactor * 8,
@@ -3405,7 +3570,7 @@ public class Eln {
                 // name,
                 LVU, 150,// electricalNominalU, electricalNominalP,
                 190,// electricalMaximalP)
-                lowVoltageCableDescriptor// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor// ElectricalCableDescriptor
             );
             sharedItem.addElement(completId, element);
         }
@@ -3416,7 +3581,7 @@ public class Eln {
                 // name,
                 LVU, 250,// electricalNominalU, electricalNominalP,
                 320,// electricalMaximalP)
-                lowVoltageCableDescriptor);
+                lowVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3426,7 +3591,7 @@ public class Eln {
                 // name,
                 MVU, 400,// electricalNominalU, electricalNominalP,
                 500,// electricalMaximalP)
-                meduimVoltageCableDescriptor);
+                mediumVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3436,7 +3601,7 @@ public class Eln {
                 // name,
                 MVU, 600,// electricalNominalU, electricalNominalP,
                 750,// electricalMaximalP)
-                highVoltageCableDescriptor);
+                highVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3446,7 +3611,7 @@ public class Eln {
                 // name,
                 LVU, 180,// electricalNominalU, electricalNominalP,
                 225,// electricalMaximalP)
-                lowVoltageCableDescriptor// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor// ElectricalCableDescriptor
             );
             sharedItem.addElement(completId, element);
         }
@@ -3457,7 +3622,7 @@ public class Eln {
                 // name,
                 LVU, 375,// electricalNominalU, electricalNominalP,
                 480,// electricalMaximalP)
-                lowVoltageCableDescriptor);
+                lowVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3467,7 +3632,7 @@ public class Eln {
                 // name,
                 MVU, 600,// electricalNominalU, electricalNominalP,
                 750,// electricalMaximalP)
-                meduimVoltageCableDescriptor);
+                mediumVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3477,7 +3642,7 @@ public class Eln {
                 // name,
                 MVU, 900,// electricalNominalU, electricalNominalP,
                 1050,// electricalMaximalP)
-                highVoltageCableDescriptor);
+                highVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3487,7 +3652,7 @@ public class Eln {
                 // name,
                 LVU, 240,// electricalNominalU, electricalNominalP,
                 300,// electricalMaximalP)
-                lowVoltageCableDescriptor// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor// ElectricalCableDescriptor
             );
             sharedItem.addElement(completId, element);
         }
@@ -3498,7 +3663,7 @@ public class Eln {
                 // name,
                 LVU, 500,// electricalNominalU, electricalNominalP,
                 640,// electricalMaximalP)
-                lowVoltageCableDescriptor);
+                lowVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3508,7 +3673,7 @@ public class Eln {
                 TR_NAME(Type.NONE, "Small 200V Tungsten Heating Corp"),// iconId, name,
                 MVU, 800,// electricalNominalU, electricalNominalP,
                 1000,// electricalMaximalP)
-                meduimVoltageCableDescriptor);
+                mediumVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3518,7 +3683,7 @@ public class Eln {
                 // name,
                 MVU, 1200,// electricalNominalU, electricalNominalP,
                 1500,// electricalMaximalP)
-                highVoltageCableDescriptor);
+                highVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3528,7 +3693,7 @@ public class Eln {
                 // name,
                 HVU, 3600,// electricalNominalU, electricalNominalP,
                 4800,// electricalMaximalP)
-                veryHighVoltageCableDescriptor);
+                veryHighVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3538,7 +3703,7 @@ public class Eln {
                 // name,
                 HVU, 4812,// electricalNominalU, electricalNominalP,
                 6015,// electricalMaximalP)
-                veryHighVoltageCableDescriptor);
+                veryHighVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3548,7 +3713,7 @@ public class Eln {
                 // name,
                 VVU, 4000,// electricalNominalU, electricalNominalP,
                 6000,// electricalMaximalP)
-                veryHighVoltageCableDescriptor);
+                veryHighVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
         {
@@ -3558,7 +3723,7 @@ public class Eln {
                 // name,
                 VVU, 12000,// electricalNominalU, electricalNominalP,
                 15000,// electricalMaximalP)
-                veryHighVoltageCableDescriptor);
+                veryHighVoltageCableT2Descriptor);
             sharedItem.addElement(completId, element);
         }
 
@@ -4342,7 +4507,7 @@ public class Eln {
 
             WindTurbineDescriptor desc = new WindTurbineDescriptor(
                 name, obj.getObj("WindTurbineMini"), // name,Obj3D obj,
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable,
                 PfW,// PfW
                 160 * windTurbinePowerFactor, 10,// double nominalPower,double nominalWind,
@@ -4400,7 +4565,7 @@ public class Eln {
 
             WaterTurbineDescriptor desc = new WaterTurbineDescriptor(
                 name, obj.getObj("SmallWaterWheel"), // name,Obj3D obj,
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 30 * waterTurbinePowerFactor,
                 LVU * 1.18,
                 waterCoord,
@@ -4424,14 +4589,14 @@ public class Eln {
             subId = 1;
             FuelGeneratorDescriptor descriptor =
                 new FuelGeneratorDescriptor(TR_NAME(Type.NONE, "50V Fuel Generator"), obj.getObj("FuelGenerator50V"),
-                    lowVoltageCableDescriptor, fuelGeneratorPowerFactor * 1200, LVU * 1.25, fuelGeneratorTankCapacity);
+                    lowVoltageCableT2Descriptor, fuelGeneratorPowerFactor * 1200, LVU * 1.25, fuelGeneratorTankCapacity);
             transparentNodeItem.addDescriptor(subId + (id << 6), descriptor);
         }
         {
             subId = 2;
             FuelGeneratorDescriptor descriptor =
                 new FuelGeneratorDescriptor(TR_NAME(Type.NONE, "200V Fuel Generator"), obj.getObj("FuelGenerator200V"),
-                    meduimVoltageCableDescriptor, fuelGeneratorPowerFactor * 6000, MVU * 1.25,
+                    mediumVoltageCableT2Descriptor, fuelGeneratorPowerFactor * 6000, MVU * 1.25,
                     fuelGeneratorTankCapacity);
             transparentNodeItem.addDescriptor(subId + (id << 6), descriptor);
         }
@@ -4466,7 +4631,7 @@ public class Eln {
                 LVU, 50,// double nominalElectricalU,double
                 // electricalNominalP,
                 800,// double nominalElectricalCoolingPower,
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cableDescriptor,
                 130, -100,// double warmLimit,double coolLimit,
                 200, 30,// double nominalP,double nominalT,
@@ -4487,7 +4652,7 @@ public class Eln {
                 MVU, 60,// double nominalElectricalU,double
                 // electricalNominalP,
                 1200,// double nominalElectricalCoolingPower,
-                meduimVoltageCableDescriptor,// ElectricalCableDescriptor
+                mediumVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cableDescriptor,
                 130, -100,// double warmLimit,double coolLimit,
                 200, 30,// double nominalP,double nominalT,
@@ -4518,7 +4683,7 @@ public class Eln {
 
             TeleporterDescriptor desc = new TeleporterDescriptor(
                 name, obj.getObj("Transporter"),
-                highVoltageCableDescriptor,
+                highVoltageCableT2Descriptor,
                 new Coordinate(-1, 0, 0, 0), new Coordinate(-1, 1, 0, 0),
                 2,// int areaH
                 powerLoad,
@@ -4598,7 +4763,7 @@ public class Eln {
                 // electricalNominalPower,
                 LVU * 1.3, P * 1.3,// electricalMaximalVoltage,double
                 // electricalMaximalPower,
-                lowVoltageCableDescriptor);
+                lowVoltageCableT2Descriptor);
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
         {
@@ -4613,7 +4778,7 @@ public class Eln {
                 // electricalNominalPower,
                 LVU * 1.3, P * 1.3,// electricalMaximalVoltage,double
                 // electricalMaximalPower,
-                lowVoltageCableDescriptor);
+                lowVoltageCableT2Descriptor);
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
 
@@ -4632,7 +4797,7 @@ public class Eln {
                 // electricalNominalPower,
                 MVU * 1.3, P * 1.3,// electricalMaximalVoltage,double
                 // electricalMaximalPower,
-                meduimVoltageCableDescriptor);
+                mediumVoltageCableT2Descriptor);
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
         {
@@ -4647,7 +4812,7 @@ public class Eln {
                 // electricalNominalPower,
                 MVU * 1.3, P * 1.3,// electricalMaximalVoltage,double
                 // electricalMaximalPower,
-                meduimVoltageCableDescriptor);
+                mediumVoltageCableT2Descriptor);
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
 
@@ -4666,7 +4831,7 @@ public class Eln {
                 // electricalNominalPower,
                 HVU * 1.3, P * 1.3,// electricalMaximalVoltage,double
                 // electricalMaximalPower,
-                highVoltageCableDescriptor);
+                highVoltageCableT2Descriptor);
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
         {
@@ -4681,7 +4846,7 @@ public class Eln {
                 // electricalNominalPower,
                 HVU * 1.3, P * 1.3,// electricalMaximalVoltage,double
                 // electricalMaximalPower,
-                highVoltageCableDescriptor);
+                highVoltageCableT2Descriptor);
             transparentNodeItem.addDescriptor(subId + (id << 6), desc);
         }
     }
@@ -4789,7 +4954,7 @@ public class Eln {
 
             descriptor = new BatteryChargerDescriptor(
                 name, obj.getObj("batterychargera"),
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable,
                 LVU, 200// double nominalVoltage,double nominalPower
             );
@@ -4802,7 +4967,7 @@ public class Eln {
 
             descriptor = new BatteryChargerDescriptor(
                 name, obj.getObj("batterychargera"),
-                lowVoltageCableDescriptor,// ElectricalCableDescriptor
+                lowVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable,
                 LVU, 400// double nominalVoltage,double nominalPower
             );
@@ -4815,7 +4980,7 @@ public class Eln {
 
             descriptor = new BatteryChargerDescriptor(
                 name, obj.getObj("batterychargera"),
-                meduimVoltageCableDescriptor,// ElectricalCableDescriptor
+                mediumVoltageCableT2Descriptor,// ElectricalCableDescriptor
                 // cable,
                 MVU, 1000// double nominalVoltage,double nominalPower
             );
@@ -4939,7 +5104,7 @@ public class Eln {
                 obj.getObj("AutoMiner"),
                 powerLoad, lightCoord, miningCoord,
                 2, 1, 0,
-                highVoltageCableDescriptor,
+                highVoltageCableT2Descriptor,
                 1, 50// double pipeRemoveTime,double pipeRemoveEnergy
             );
 
@@ -5616,24 +5781,14 @@ public class Eln {
             'C', findItemStack("Iron Cable"),
             'R', "itemRubber");
 
-        addRecipe(lowVoltageCableDescriptor.newItemStack(2), //Low Voltage Cable
+        addRecipe(lowVoltageCableT1Descriptor.newItemStack(4), //Low Voltage Cable
             "R",
             "C",
             "C",
             'C', findItemStack("Copper Cable"),
             'R', "itemRubber");
 
-        addRecipe(meduimVoltageCableDescriptor.newItemStack(1), //Meduim Voltage Cable (Medium Voltage Cable)
-            "R",
-            "C",
-            'C', lowVoltageCableDescriptor.newItemStack(1),
-            'R', "itemRubber");
 
-        addRecipe(highVoltageCableDescriptor.newItemStack(1), //High Voltage Cable
-            "R",
-            "C",
-            'C', meduimVoltageCableDescriptor.newItemStack(1),
-            'R', "itemRubber");
 
         addRecipe(signalCableDescriptor.newItemStack(12), //Signal Wire
             "RRR",
@@ -5648,7 +5803,7 @@ public class Eln {
             'C', signalCableDescriptor.newItemStack(1),
             'R', "itemRubber");
 
-        addRecipe(lowVoltageCableDescriptor.newItemStack(12),
+        addRecipe(lowVoltageCableT1Descriptor.newItemStack(12),
             "RRR",
             "CCC",
             "RRR",
@@ -5656,12 +5811,7 @@ public class Eln {
             'R', "itemRubber");
 
 
-        addRecipe(veryHighVoltageCableDescriptor.newItemStack(12),
-            "RRR",
-            "CCC",
-            "RRR",
-            'C', "ingotAlloy",
-            'R', "itemRubber");
+
 
     }
 
@@ -5760,7 +5910,7 @@ public class Eln {
             "cbc",
             " l ",
             " g ",
-            'c', findItemStack("Low Voltage Cable"),
+            'c', findItemStack("Low Voltage Cable T1"),
             'b', findItemStack("Portable Battery Pack"),
             'l', findItemStack("50V LED Bulb"),
             'g', new ItemStack(Blocks.glass_pane));
@@ -5769,7 +5919,7 @@ public class Eln {
             "cbc",
             " l ",
             " g ",
-            'c', findItemStack("Medium Voltage Cable"),
+            'c', findItemStack("Medium Voltage Cable T1"),
             'b', findItemStack("Portable Battery Pack"),
             'l', findItemStack("200V LED Bulb"),
             'g', new ItemStack(Blocks.glass_pane));
@@ -5792,14 +5942,14 @@ public class Eln {
             'R', "itemRubber",
             'U', findItemStack("Copper Plate"),
             'A', findItemStack("Alloy Plate"),
-            'C', findItemStack("Low Voltage Cable"));
+            'C', findItemStack("Low Voltage Cable T1"));
         addRecipe(findItemStack("200V Power Socket", 16),
             "RUR",
             "ACA",
             'R', "itemRubber",
             'U', findItemStack("Copper Plate"),
             'A', findItemStack("Alloy Plate"),
-            'C', findItemStack("Medium Voltage Cable"));
+            'C', findItemStack("Medium Voltage Cable T1"));
     }
 
     private void recipePassiveComponent() {
@@ -5889,7 +6039,7 @@ public class Eln {
             'R', new ItemStack(Items.redstone),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("Low Voltage Cable"));
+            'C', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("Medium Voltage Switch"),
             "  I",
@@ -5898,7 +6048,7 @@ public class Eln {
             'R', new ItemStack(Items.redstone),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("Medium Voltage Cable"));
+            'C', findItemStack("Medium Voltage Cable T1"));
 
         addRecipe(findItemStack("High Voltage Switch"),
             "AAI",
@@ -5907,7 +6057,7 @@ public class Eln {
             'R', new ItemStack(Items.redstone),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("High Voltage Cable"));
+            'C', findItemStack("High Voltage Cable T1"));
 
         addRecipe(findItemStack("Very High Voltage Switch"),
             "AAI",
@@ -5916,7 +6066,7 @@ public class Eln {
             'R', new ItemStack(Items.redstone),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("Very High Voltage Cable"));
+            'C', findItemStack("Very High Voltage Cable T1"));
 
     }
 
@@ -5930,7 +6080,7 @@ public class Eln {
             'G', new ItemStack(Blocks.glass_pane),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("Low Voltage Cable"));
+            'C', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("Medium Voltage Relay"),
             "GGG",
@@ -5941,7 +6091,7 @@ public class Eln {
             'G', new ItemStack(Blocks.glass_pane),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("Medium Voltage Cable"));
+            'C', findItemStack("Medium Voltage Cable T1"));
 
         addRecipe(findItemStack("High Voltage Relay"),
             "GGG",
@@ -5952,7 +6102,7 @@ public class Eln {
             'G', new ItemStack(Blocks.glass_pane),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("High Voltage Cable"));
+            'C', findItemStack("High Voltage Cable T1"));
 
         addRecipe(findItemStack("Very High Voltage Relay"),
             "GGG",
@@ -5963,7 +6113,7 @@ public class Eln {
             'G', new ItemStack(Blocks.glass_pane),
             'A', "itemRubber",
             'I', findItemStack("Copper Cable"),
-            'C', findItemStack("Very High Voltage Cable"));
+            'C', findItemStack("Very High Voltage Cable T1"));
 
         addRecipe(findItemStack("Signal Relay"),
             "GGG",
@@ -6206,7 +6356,7 @@ public class Eln {
             "HMH",
             " E ",
             'M', findItemStack("Machine Block"),
-            'E', findItemStack("Low Voltage Cable"),
+            'E', findItemStack("Low Voltage Cable T1"),
             'H', findItemStack("Copper Thermal Cable"),
             'm', findItemStack("Electrical Motor")
 
@@ -6217,7 +6367,7 @@ public class Eln {
             "IEI",
             'I', "itemRubber",
             'M', findItemStack("Advanced Machine Block"),
-            'E', findItemStack("Medium Voltage Cable"),
+            'E', findItemStack("Medium Voltage Cable T1"),
             'H', findItemStack("Copper Thermal Cable"),
             'm', findItemStack("Advanced Electrical Motor"));
         addRecipe(findItemStack("Generator"),
@@ -6227,7 +6377,7 @@ public class Eln {
             'm', findItemStack("Advanced Electrical Motor"),
             'M', findItemStack("Advanced Machine Block"),
             'a', firstExistingOre("ingotAluminum", "ingotIron"),
-            'E', findItemStack("High Voltage Cable")
+            'E', findItemStack("High Voltage Cable T1")
         );
         addRecipe(findItemStack("Shaft Motor"),
             "imi",
@@ -6235,7 +6385,7 @@ public class Eln {
             'i', "ingotIron",
             'M', findItemStack("Advanced Machine Block"),
             'm', findItemStack("Advanced Electrical Motor"),
-            'E', findItemStack("Very High Voltage Cable")
+            'E', findItemStack("Very High Voltage Cable T1")
         );
         addRecipe(findItemStack("Steam Turbine"),
             " a ",
@@ -6318,7 +6468,7 @@ public class Eln {
             "C C",
             "PPP",
             "PPP",
-            'C', findItemStack("Low Voltage Cable"),
+            'C', findItemStack("Low Voltage Cable T1"),
             'P', "ingotLead",
             'I', new ItemStack(Items.iron_ingot));
 
@@ -6355,7 +6505,7 @@ public class Eln {
             "ppp",
             "III",
             "ppp",
-            'C', findItemStack("Low Voltage Cable"),
+            'C', findItemStack("Low Voltage Cable T1"),
             'p', new ItemStack(Items.coal, 1, 0),
             'I', "ingotCopper");
 
@@ -6363,7 +6513,7 @@ public class Eln {
             "ppp",
             "III",
             "ppp",
-            'C', findItemStack("Low Voltage Cable"),
+            'C', findItemStack("Low Voltage Cable T1"),
             'p', new ItemStack(Items.coal, 1, 1),
             'I', "ingotCopper");
     }
@@ -6408,7 +6558,7 @@ public class Eln {
             " TC",
             " PH",
             'P', findItemStack("Utility Pole"),
-            'H', findItemStack("High Voltage Cable"),
+            'H', findItemStack("High Voltage Cable T1"),
             'C', findItemStack("Optimal Ferromagnetic Core"),
             'T', findItemStack("DC-DC Converter")
         );
@@ -6456,7 +6606,7 @@ public class Eln {
 //					"PPP",
 //					'P', "sheetPlastic",
 //					'M', findItemStack("Machine Block"),
-//					'H', findItemStack("High Voltage Cable")
+//					'H', findItemStack("High Voltage Cable T1")
 //			);
 //		} else {
 //			addRecipe(findItemStack("Downlink"),
@@ -6465,7 +6615,7 @@ public class Eln {
 //					"PPP",
 //					'P', "itemRubber",
 //					'M', findItemStack("Machine Block"),
-//					'H', findItemStack("High Voltage Cable")
+//					'H', findItemStack("High Voltage Cable T1")
 //			);
 //		}
     }
@@ -6476,7 +6626,7 @@ public class Eln {
             "III",
             "IFI",
             "ICI",
-            'C', findItemStack("Low Voltage Cable"),
+            'C', findItemStack("Low Voltage Cable T1"),
             'F', new ItemStack(Blocks.furnace),
             'I', new ItemStack(Items.iron_ingot));
         addShapelessRecipe(findItemStack("Canister of Water", 1),
@@ -6571,7 +6721,7 @@ public class Eln {
             'I', "plateIron",
             'B', findItemStack("Machine Block"),
             'A', findItemStack("Analogic Regulator"),
-            'C', findItemStack("Low Voltage Cable"),
+            'C', findItemStack("Low Voltage Cable T1"),
             'M', findItemStack("Electrical Motor"));
 
         addRecipe(findItemStack("200V Fuel Generator"),
@@ -6581,7 +6731,7 @@ public class Eln {
             'I', "plateIron",
             'B', findItemStack("Advanced Machine Block"),
             'A', findItemStack("Analogic Regulator"),
-            'C', findItemStack("Medium Voltage Cable"),
+            'C', findItemStack("Medium Voltage Cable T1"),
             'M', findItemStack("Advanced Electrical Motor"));
     }
 
@@ -6593,7 +6743,7 @@ public class Eln {
             'S', "plateSilicon",
             'L', findItemStack("Lapis Dust"),
             'I', new ItemStack(Items.iron_ingot),
-            'C', findItemStack("Low Voltage Cable"));
+            'C', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("Small Rotating Solar Panel"),
             "ISI",
@@ -6769,7 +6919,7 @@ public class Eln {
             " S ",
             'G', new ItemStack(Blocks.glass_pane),
             'F', dictTungstenIngot,
-            'S', findItemStack("Low Voltage Cable"));
+            'S', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("200V Incandescent Light Bulb", 4),
             " G ",
@@ -6777,7 +6927,7 @@ public class Eln {
             " S ",
             'G', new ItemStack(Blocks.glass_pane),
             'F', dictTungstenIngot,
-            'S', findItemStack("Medium Voltage Cable"));
+            'S', findItemStack("Medium Voltage Cable T1"));
 
         // CARBON
         addRecipe(findItemStack("Small 50V Carbon Incandescent Light Bulb", 4),
@@ -6803,7 +6953,7 @@ public class Eln {
             " S ",
             'G', new ItemStack(Blocks.glass_pane),
             'F', new ItemStack(Items.coal),
-            'S', findItemStack("Low Voltage Cable"));
+            'S', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("50V Carbon Incandescent Light Bulb", 4),
             " G ",
@@ -6811,7 +6961,7 @@ public class Eln {
             " S ",
             'G', new ItemStack(Blocks.glass_pane),
             'F', new ItemStack(Items.coal, 1, 1),
-            'S', findItemStack("Low Voltage Cable"));
+            'S', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(
             findItemStack("Small 50V Economic Light Bulb", 4),
@@ -6828,7 +6978,7 @@ public class Eln {
             " S ",
             'G', new ItemStack(Blocks.glass_pane),
             'F', new ItemStack(Items.glowstone_dust),
-            'S', findItemStack("Low Voltage Cable"));
+            'S', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("200V Economic Light Bulb", 4),
             " G ",
@@ -6836,7 +6986,7 @@ public class Eln {
             " S ",
             'G', new ItemStack(Blocks.glass_pane),
             'F', new ItemStack(Items.glowstone_dust),
-            'S', findItemStack("Medium Voltage Cable"));
+            'S', findItemStack("Medium Voltage Cable T1"));
 
         addRecipe(findItemStack("50V Farming Lamp", 2),
             "GGG",
@@ -6844,7 +6994,7 @@ public class Eln {
             "GSG",
             'G', new ItemStack(Blocks.glass_pane),
             'F', dictTungstenIngot,
-            'S', findItemStack("Low Voltage Cable"));
+            'S', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("200V Farming Lamp", 2),
             "GGG",
@@ -6852,7 +7002,7 @@ public class Eln {
             "GSG",
             'G', new ItemStack(Blocks.glass_pane),
             'F', dictTungstenIngot,
-            'S', findItemStack("Medium Voltage Cable"));
+            'S', findItemStack("Medium Voltage Cable T1"));
 
         addRecipe(findItemStack("50V LED Bulb", 2),
             "GGG",
@@ -6860,7 +7010,7 @@ public class Eln {
             " C ",
             'G', new ItemStack(Blocks.glass_pane),
             'S', findItemStack("Silicon Ingot"),
-            'C', findItemStack("Low Voltage Cable"));
+            'C', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("200V LED Bulb", 2),
             "GGG",
@@ -6868,7 +7018,7 @@ public class Eln {
             " C ",
             'G', new ItemStack(Blocks.glass_pane),
             'S', findItemStack("Silicon Ingot"),
-            'C', findItemStack("Medium Voltage Cable"));
+            'C', findItemStack("Medium Voltage Cable T1"));
 
     }
 
@@ -6957,7 +7107,7 @@ public class Eln {
             "III",
             "C C",
             'I', findItemStack("Iron Cable"),
-            'C', findItemStack("Low Voltage Cable"));
+            'C', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("Advanced Electrical Motor"),
             "RCR",
@@ -6966,7 +7116,7 @@ public class Eln {
             'M', findItemStack("Advanced Magnet"),
             'I', new ItemStack(Items.iron_ingot),
             'R', new ItemStack(Items.redstone),
-            'C', findItemStack("Medium Voltage Cable"));
+            'C', findItemStack("Medium Voltage Cable T1"));
     }
 
     private void recipeSolarTracker() {
@@ -7350,7 +7500,7 @@ public class Eln {
             " R ",
             "RCR",
             " R ",
-            'C', findItemStack("High Voltage Cable"),
+            'C', findItemStack("High Voltage Cable T1"),
             'R', new ItemStack(Items.redstone));
 
         addRecipe(findItemStack("Thermal Probe Chip"),
@@ -7758,7 +7908,7 @@ public class Eln {
             "RMR",
             " R ",
             'M', findItemStack("Advanced Machine Block"),
-            'C', findItemStack("High Voltage Cable"),
+            'C', findItemStack("High Voltage Cable T1"),
             'R', dictAdvancedChip);
     }
 
@@ -7770,7 +7920,7 @@ public class Eln {
             " c ",
             'M', findItemStack("Advanced Machine Block"),
             'C', dictAdvancedChip,
-            'c', highVoltageCableDescriptor.newItemStack(),
+            'c', highVoltageCableT2Descriptor.newItemStack(),
             'R', new ItemStack(Blocks.redstone_block));
 
     }
@@ -7989,22 +8139,22 @@ public class Eln {
         addRecipe(findItemStack("Lead Fuse for low voltage cables", 4),
             "rcr",
             'r', findItemStack("itemRubber"),
-            'c', findItemStack("Low Voltage Cable"));
+            'c', findItemStack("Low Voltage Cable T1"));
 
         addRecipe(findItemStack("Lead Fuse for medium voltage cables", 4),
             "rcr",
             'r', findItemStack("itemRubber"),
-            'c', findItemStack("Medium Voltage Cable"));
+            'c', findItemStack("Medium Voltage Cable T1"));
 
         addRecipe(findItemStack("Lead Fuse for high voltage cables", 4),
             "rcr",
             'r', findItemStack("itemRubber"),
-            'c', findItemStack("High Voltage Cable"));
+            'c', findItemStack("High Voltage Cable T1"));
 
         addRecipe(findItemStack("Lead Fuse for very high voltage cables", 4),
             "rcr",
             'r', findItemStack("itemRubber"),
-            'c', findItemStack("Very High Voltage Cable"));
+            'c', findItemStack("Very High Voltage Cable T1"));
 
     }
 
@@ -8174,7 +8324,7 @@ public class Eln {
             "RIR",
             "III",
             "RcR",
-            'c', findItemStack("Low Voltage Cable"),
+            'c', findItemStack("Low Voltage Cable T1"),
             'I', findItemStack("Iron Cable"),
             'R', new ItemStack(Items.redstone));
         addRecipe(findItemStack("50V Battery Charger", 1),
@@ -8182,7 +8332,7 @@ public class Eln {
             "ICI",
             "RcR",
             'C', dictCheapChip,
-            'c', findItemStack("Low Voltage Cable"),
+            'c', findItemStack("Low Voltage Cable T1"),
             'I', findItemStack("Iron Cable"),
             'R', new ItemStack(Items.redstone));
 
@@ -8191,7 +8341,7 @@ public class Eln {
             "ICI",
             "RcR",
             'C', dictAdvancedChip,
-            'c', findItemStack("Medium Voltage Cable"),
+            'c', findItemStack("Medium Voltage Cable T1"),
             'I', findItemStack("Iron Cable"),
             'R', new ItemStack(Items.redstone));
 
@@ -8216,7 +8366,7 @@ public class Eln {
                 "cCR",
                 "III",
                 'C', dictAdvancedChip,
-                'c', findItemStack("High Voltage Cable"),
+                'c', findItemStack("High Voltage Cable T2"),
                 'I', findItemStack("Iron Cable"),
                 'R', new ItemStack(Items.gold_ingot));
         }
@@ -8390,15 +8540,15 @@ public class Eln {
     }
 
     public static double getSmallRs() {
-        return instance.lowVoltageCableDescriptor.electricalRs;
+        return instance.lowVoltageCableT2Descriptor.electricalRs;
     }
 
     public static void applySmallRs(NbtElectricalLoad aLoad) {
-        instance.lowVoltageCableDescriptor.applyTo(aLoad);
+        instance.lowVoltageCableT2Descriptor.applyTo(aLoad);
     }
 
     public static void applySmallRs(Resistor r) {
-        instance.lowVoltageCableDescriptor.applyTo(r);
+        instance.lowVoltageCableT2Descriptor.applyTo(r);
     }
 
     static ItemStack findItemStack(String name, int stackSize) {

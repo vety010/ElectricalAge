@@ -14,15 +14,13 @@ public class Achievements {
     public static AchievementPage achievementPageEln;
 
     public static void init() {
-        openGuide = new Achievement(TR("achievement.open_guide"),
-            "open_guide", 0, 0, Items.book, null);
 
         TR_DESC(Type.ACHIEVEMENT, "open_guide");
 
         craft50VMacerator = new Achievement(TR("achievement.craft_50v_macerator"),
             "craft_50v_macerator", 0, 2, Eln.findItemStack("50V Macerator", 0), openGuide);
 
-        TR_DESC(Type.ACHIEVEMENT, "craft_50v_macerator");
+        TR_DESC(Type.ACHIEVEMENT, "craft_50v_macerator");*/
 
         craft50VSocket = new Achievement(TR("achievement.craft_50v_socket"),
             "craft_50v_socket", 2, 2, Eln.findItemStack("50V Power Socket", 0), craft50VMacerator);
